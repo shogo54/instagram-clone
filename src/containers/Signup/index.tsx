@@ -3,48 +3,48 @@ import { Container, Typography } from '@material-ui/core';
 import { Formik, Form, FormikProps } from 'formik';
 import { useHistory } from 'react-router-dom';
 import AuthSwitch from '../../components/AuthSwitch';
-import TextField from '../../components/TextField';
 import Button from '../../components/Button';
+import TextField from '../../components/TextField';
+import { signupErrorMessages as errorMessages } from '../../data/error-message';
 import { auth } from '../../data/firebase';
-import { loginErrorMessages as errorMessages } from '../../data/error-message';
-import { loginValidationSchema } from '../../data/validation';
-import { ILoginFormValues as IFormValues } from '../../modules/form-values';
+import { signupValidationSchema } from '../../data/validation';
+import { ISignupFormValues as IFormValues } from '../../modules/form-values';
 
-const Login: React.FC = () => {
+const Signup: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState<string>('');
   const history = useHistory();
 
   // objects needed for Formik
   const initialValues: IFormValues = {
     userId: '',
+    fullName: '',
+    userName: '',
     password: '',
   };
 
-  const loginUser = async (data: IFormValues, resetForm: Function) => {
+  const createUser = async (data: IFormValues, resetForm: Function) => {
     try {
       if (data) {
         console.log(data);
+        await auth.createUserWithEmailAndPassword(data.userId, data.password);
         await auth.signInWithEmailAndPassword(data.userId, data.password);
         resetForm({});
         history.push('/');
       }
     } catch (error) {
       console.log(error);
-      switch (error.code) {
-        case 'auth/user-not-found':
-          setErrorMessage(errorMessages.userNotFound);
+      switch(error.code) {
+        case 'auth/invalid-email': 
+          setErrorMessage(errorMessages.invalidEmail);
           break;
-        case 'auth/wrong-password':
-          setErrorMessage(errorMessages.wrongPassword);
-          break;
-        default:
+        default: 
           setErrorMessage(errorMessages.general);
       }
     }
   };
 
   const onSubmit = (values: IFormValues, actions: any) => {
-    loginUser(values, actions.resetForm);
+    createUser(values, actions.resetForm);
     setTimeout(() => {
       actions.setSubmitting(false);
     }, 500);
@@ -52,10 +52,15 @@ const Login: React.FC = () => {
 
   return (
     <Container>
+      <div>
+        <Typography>Sign up to see photos and videos from your friends.</Typography>
+        <Button>Log in with Facebook</Button>
+      </div>
+      <div>Or</div>
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
-        validationSchema={loginValidationSchema}
+        validationSchema={signupValidationSchema}
       >
         {(props: FormikProps<IFormValues>) => {
           const {
@@ -80,6 +85,24 @@ const Login: React.FC = () => {
                 onBlur={handleBlur}
               />
               <TextField
+                name="fullName"
+                id="form-full-name"
+                label="Full Name"
+                value={values.fullName}
+                error={errors.fullName && touched.fullName ? true : false}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <TextField
+                name="userName"
+                id="form-user-name"
+                label="Username"
+                value={values.userName}
+                error={errors.userName && touched.userName ? true : false}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <TextField
                 name="password"
                 id="form-password"
                 label="Password"
@@ -89,21 +112,19 @@ const Login: React.FC = () => {
                 onBlur={handleBlur}
               />
               <Button type="submit" disabled={!(dirty && isValid) || isSubmitting}>
-                Log in
+                Sign up
               </Button>
+              {errorMessage && <Typography>{errorMessage}</Typography>}
+              <Typography>
+                By signing up, you agree to our Terms, Data Policy and Cookies Policy.
+              </Typography>
             </Form>
           );
         }}
       </Formik>
-      <div>Or</div>
-      <div>
-        <Button>Log in with Facebook</Button>
-        {errorMessage && <Typography>{errorMessage}</Typography>}
-        <Typography>Forgot your password?</Typography>
-      </div>
-      <AuthSwitch dest='signup' />
+      <AuthSwitch dest='login'/>
     </Container>
   );
 };
 
-export default Login;
+export default Signup;
