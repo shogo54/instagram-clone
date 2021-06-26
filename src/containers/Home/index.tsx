@@ -2,10 +2,7 @@ import React from 'react';
 import Signup from '../Signup';
 
 const Home: React.FC = () => {
-  
-  return (
-    <Signup />
-  );
+  return <Signup />;
 };
 
 export default Home;
