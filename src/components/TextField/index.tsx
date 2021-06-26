@@ -1,6 +1,6 @@
 import React from 'react';
 import MuiTextField, { TextFieldProps } from '@material-ui/core/TextField';
-import './index.css';
+import './style.css';
 
 const TextField: React.FC<TextFieldProps> = ({ id, label, ...props }) => {
   return (
