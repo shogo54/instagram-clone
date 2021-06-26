@@ -1,12 +1,13 @@
 import React from 'react';
-// import Login from '../src/containers/Login';
-import Home from '../src/containers/Home';
-import './App.css';
+import { AuthProvider } from './containers/Auth';
+import Routes from './Routes';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <Home />
+    <AuthProvider>
+      <Routes />
+    </AuthProvider>
   );
-}
+};
 
 export default App;
