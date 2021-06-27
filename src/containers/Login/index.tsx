@@ -71,24 +71,24 @@ const Login: React.FC = () => {
           return (
             <Form>
               <TextField
-                name="userId"
-                id="form-user-id"
-                label="Mobile Number or Email"
+                name='userId'
+                id='form-user-id'
+                label='Mobile Number or Email'
                 value={values.userId}
                 error={errors.userId && touched.userId ? true : false}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
               <TextField
-                name="password"
-                id="form-password"
-                label="Password"
+                name='password'
+                id='form-password'
+                label='Password'
                 value={values.password}
                 error={errors.password && touched.password ? true : false}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              <Button type="submit" disabled={!(dirty && isValid) || isSubmitting}>
+              <Button type='submit' disabled={!(dirty && isValid) || isSubmitting}>
                 Log in
               </Button>
             </Form>

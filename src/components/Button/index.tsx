@@ -4,8 +4,8 @@ import MuiButton, { ButtonProps } from '@material-ui/core/Button';
 
 const Button: React.FC<ButtonProps> = ({ children, ...props }) => {
   return (
-    <div className="btn">
-      <MuiButton variant="contained" {...props}>
+    <div className='btn'>
+      <MuiButton variant='contained' {...props}>
         {children}
       </MuiButton>
     </div>

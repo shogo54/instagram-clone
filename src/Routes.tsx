@@ -12,9 +12,9 @@ const Routes: React.FC = () => {
     <Profile />
   ) : (
     <Router>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/accounts/signup" component={Signup} />
-      <Route exact path="/accounts/login" component={Login} />
+      <Route exact path='/' component={Home} />
+      <Route exact path='/accounts/signup' component={Signup} />
+      <Route exact path='/accounts/login' component={Login} />
     </Router>
   );
 };

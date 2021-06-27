@@ -97,42 +97,42 @@ const Signup: React.FC = () => {
           return (
             <Form>
               <TextField
-                name="userId"
-                id="form-user-id"
-                label="Mobile Number or Email"
+                name='userId'
+                id='form-user-id'
+                label='Mobile Number or Email'
                 value={values.userId}
                 error={errors.userId && touched.userId ? true : false}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
               <TextField
-                name="fullName"
-                id="form-full-name"
-                label="Full Name"
+                name='fullName'
+                id='form-full-name'
+                label='Full Name'
                 value={values.fullName}
                 error={errors.fullName && touched.fullName ? true : false}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
               <TextField
-                name="userName"
-                id="form-user-name"
-                label="Username"
+                name='userName'
+                id='form-user-name'
+                label='Username'
                 value={values.userName}
                 error={errors.userName && touched.userName ? true : false}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
               <TextField
-                name="password"
-                id="form-password"
-                label="Password"
+                name='password'
+                id='form-password'
+                label='Password'
                 value={values.password}
                 error={errors.password && touched.password ? true : false}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              <Button type="submit" disabled={!(dirty && isValid) || isSubmitting}>
+              <Button type='submit' disabled={!(dirty && isValid) || isSubmitting}>
                 Sign up
               </Button>
               {errorMessage && <Typography>{errorMessage}</Typography>}
@@ -143,7 +143,7 @@ const Signup: React.FC = () => {
           );
         }}
       </Formik>
-      <AuthSwitch dest="login" />
+      <AuthSwitch dest='login' />
     </Container>
   );
 };
