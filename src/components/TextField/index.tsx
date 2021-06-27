@@ -1,18 +1,41 @@
 import React from 'react';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import MuiTextField, { TextFieldProps } from '@material-ui/core/TextField';
-import './style.css';
+import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
+import { inputStyles, rootStyles } from './style';
 
-const TextField: React.FC<TextFieldProps> = ({ id, label, ...props }) => {
+const TextField: React.FC<TextFieldProps> = ({
+  id,
+  label,
+  value,
+  error,
+  ...props
+}) => {
+  const rootClasses = rootStyles();
+  const inputClasses = inputStyles({ value: value as boolean });
+
+  const adornment = error ? (
+    <InputAdornment position='end'>
+      <CancelOutlinedIcon color='error' />
+    </InputAdornment>
+  ) : null;
+
   return (
-    <div className='btn'>
-      <MuiTextField
-        id={id}
-        label={label}
-        variant='outlined'
-        placeholder={label?.toString()}
-        {...props}
-      />
-    </div>
+    <MuiTextField
+      id={id}
+      label={label}
+      variant='filled'
+      placeholder={label?.toString()}
+      classes={rootClasses}
+      InputProps={{
+        classes: inputClasses,
+        disableUnderline: true,
+        endAdornment: adornment,
+      }}
+      InputLabelProps={{ shrink: value ? true : false }}
+      size='small'
+      {...props}
+    />
   );
 };
 
