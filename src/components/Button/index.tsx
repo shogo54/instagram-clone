@@ -1,14 +1,21 @@
 import React from 'react';
 import MuiButton, { ButtonProps } from '@material-ui/core/Button';
-// import './index.css';
+import { useStyles } from './style';
 
 const Button: React.FC<ButtonProps> = ({ children, ...props }) => {
+  const classes = useStyles();
+
   return (
-    <div className='btn'>
-      <MuiButton variant='contained' {...props}>
-        {children}
-      </MuiButton>
-    </div>
+    <MuiButton
+      variant='contained'
+      size='small'
+      color='primary'
+      fullWidth
+      classes={classes}
+      {...props}
+    >
+      {children}
+    </MuiButton>
   );
 };
 
