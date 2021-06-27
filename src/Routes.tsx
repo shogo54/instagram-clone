@@ -7,7 +7,7 @@ import Profile from '../src/containers/Profile';
 import { AuthContext } from './containers/Auth';
 
 const Routes: React.FC = () => {
-  const user = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   return user ? (
     <Profile />
   ) : (

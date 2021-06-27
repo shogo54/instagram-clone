@@ -6,9 +6,10 @@ import AuthSwitch from '../../components/AuthSwitch';
 import Button from '../../components/Button';
 import TextField from '../../components/TextField';
 import { signupErrorMessages as errorMessages } from '../../data/error-message';
-import { auth } from '../../data/firebase';
+import { auth, database } from '../../data/firebase';
 import { signupValidationSchema } from '../../data/validation';
 import { ISignupFormValues as IFormValues } from '../../modules/form-values';
+import { IUserProfile } from '../../modules/user';
 
 const Signup: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState<string>('');
@@ -26,18 +27,38 @@ const Signup: React.FC = () => {
     try {
       if (data) {
         console.log(data);
+        // create and sign in as a new user
         await auth.createUserWithEmailAndPassword(data.userId, data.password);
-        await auth.signInWithEmailAndPassword(data.userId, data.password);
+
+        // if logged in successfully
+        const user = auth.currentUser;
+        if (user) {
+          // create user profile data
+          const userData: IUserProfile = {
+            userId: user.email || '',
+            fullName: data.fullName,
+            userName: data.userName,
+            password: data.password,
+            uid: user.uid,
+          };
+          // store the additional user data to database
+          await database.ref('users/' + user.uid).set(userData);
+        }
+
+        // reset the form and go to domain root
         resetForm({});
         history.push('/');
       }
     } catch (error) {
       console.log(error);
-      switch(error.code) {
-        case 'auth/invalid-email': 
+      switch (error.code) {
+        case 'auth/invalid-email':
           setErrorMessage(errorMessages.invalidEmail);
           break;
-        default: 
+        case 'auth/email-already-in-use':
+          setErrorMessage(errorMessages.emailAlreadyInUse);
+          break;
+        default:
           setErrorMessage(errorMessages.general);
       }
     }
@@ -122,7 +143,7 @@ const Signup: React.FC = () => {
           );
         }}
       </Formik>
-      <AuthSwitch dest='login'/>
+      <AuthSwitch dest="login" />
     </Container>
   );
 };

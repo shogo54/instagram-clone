@@ -7,6 +7,7 @@ export const loginErrorMessages = {
 
 export const signupErrorMessages = {
   invalidEmail: 'The email address is badly formatted.',
+  emailAlreadyInUse: 'The email address is already in use by another account.',
   duplicate: 'Another account is using ',
   general: 'Something went wrong. Please try again.',
 };
