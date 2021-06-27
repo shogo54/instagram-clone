@@ -3,8 +3,11 @@ import { Container, Typography } from '@material-ui/core';
 import { Formik, Form, FormikProps } from 'formik';
 import { useHistory } from 'react-router-dom';
 import AuthSwitch from '../../components/AuthSwitch';
-import TextField from '../../components/TextField';
 import Button from '../../components/Button';
+import FacebookButton from '../../components/FacebookButton';
+import FormContainer from '../../components/FormContainer';
+import OrBox from '../../components/OrBox';
+import TextField from '../../components/TextField';
 import { auth } from '../../data/firebase';
 import { loginErrorMessages as errorMessages } from '../../data/error-message';
 import { loginValidationSchema } from '../../data/validation';
@@ -52,55 +55,58 @@ const Login: React.FC = () => {
 
   return (
     <Container>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={onSubmit}
-        validationSchema={loginValidationSchema}
-      >
-        {(props: FormikProps<IFormValues>) => {
-          const {
-            values,
-            touched,
-            errors,
-            dirty,
-            isValid,
-            handleBlur,
-            handleChange,
-            isSubmitting,
-          } = props;
-          return (
-            <Form>
-              <TextField
-                name='userId'
-                id='form-user-id'
-                label='Mobile Number or Email'
-                value={values.userId}
-                error={errors.userId && touched.userId ? true : false}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <TextField
-                name='password'
-                id='form-password'
-                label='Password'
-                value={values.password}
-                error={errors.password && touched.password ? true : false}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <Button type='submit' disabled={!(dirty && isValid) || isSubmitting}>
-                Log in
-              </Button>
-            </Form>
-          );
-        }}
-      </Formik>
-      <div>Or</div>
-      <div>
-        <Button>Log in with Facebook</Button>
+      <FormContainer>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={onSubmit}
+          validationSchema={loginValidationSchema}
+        >
+          {(props: FormikProps<IFormValues>) => {
+            const {
+              values,
+              touched,
+              errors,
+              dirty,
+              isValid,
+              handleBlur,
+              handleChange,
+              isSubmitting,
+            } = props;
+            return (
+              <Form style={{ width: '100%' }}>
+                <TextField
+                  name='userId'
+                  id='form-user-id'
+                  label='Mobile Number or Email'
+                  value={values.userId}
+                  error={errors.userId && touched.userId ? true : false}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                <TextField
+                  name='password'
+                  id='form-password'
+                  label='Password'
+                  value={values.password}
+                  error={errors.password && touched.password ? true : false}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                <Button
+                  type='submit'
+                  disabled={!(dirty && isValid) || isSubmitting}
+                >
+                  Log in
+                </Button>
+              </Form>
+            );
+          }}
+        </Formik>
+        <OrBox />
+        <FacebookButton />
         {errorMessage && <Typography>{errorMessage}</Typography>}
         <Typography>Forgot your password?</Typography>
-      </div>
+      </FormContainer>
       <AuthSwitch dest='signup' />
     </Container>
   );
