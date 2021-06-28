@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Auth';
+import AuthContainer from '../../components/AuthContainer';
 import Button from '../../components/Button';
+import PageContainer from '../../components/PageContainer';
 import { auth } from '../../data/firebase';
 
 const Profile: React.FC = () => {
@@ -11,13 +13,15 @@ const Profile: React.FC = () => {
   };
 
   return (
-    <>
-      <div>user id: {user?.email}</div>
-      <div>full name: {profile?.fullName}</div>
-      <div>user name: {profile?.userName}</div>
-      <div>user password: {profile?.password}</div>
-      <Button onClick={SignOutUser}>Sign out</Button>
-    </>
+    <PageContainer>
+      <AuthContainer>
+        <div>user id: {user?.email}</div>
+        <div>full name: {profile?.fullName}</div>
+        <div>user name: {profile?.userName}</div>
+        <div>user password: {profile?.password}</div>
+        <Button onClick={SignOutUser}>Sign out</Button>
+      </AuthContainer>
+    </PageContainer>
   );
 };
 

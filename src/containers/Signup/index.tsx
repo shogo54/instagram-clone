@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Grid, Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { Formik, Form, FormikProps } from 'formik';
 import { useHistory } from 'react-router-dom';
 import AuthContainer from '../../components/AuthContainer';
@@ -7,7 +7,9 @@ import AuthSwitch from '../../components/AuthSwitch';
 import Button from '../../components/Button';
 import FacebookButton from '../../components/FacebookButton';
 import FormContainer from '../../components/FormContainer';
+import GetApp from '../../components/GetApp';
 import OrBox from '../../components/OrBox';
+import PageContainer from '../../components/PageContainer';
 import TextField from '../../components/TextField';
 import { signupErrorMessages as errorMessages } from '../../data/error-message';
 import { auth, database } from '../../data/firebase';
@@ -77,7 +79,7 @@ const Signup: React.FC = () => {
   };
 
   return (
-    <Container>
+    <PageContainer>
       <AuthContainer>
         <FormContainer>
           <Grid>
@@ -184,8 +186,9 @@ const Signup: React.FC = () => {
           </Formik>
         </FormContainer>
         <AuthSwitch dest='login' />
+        <GetApp />
       </AuthContainer>
-    </Container>
+    </PageContainer>
   );
 };
 
