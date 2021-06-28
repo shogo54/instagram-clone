@@ -6,5 +6,6 @@ export const useStyles = makeStyles({
     padding: '0 40px 20px',
     marginBottom: '10px',
     border: '1px solid rgba(219,219,219)',
+    backgroundColor: 'white',
   },
 });
