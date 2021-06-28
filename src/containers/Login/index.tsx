@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Container, Typography } from '@material-ui/core';
 import { Formik, Form, FormikProps } from 'formik';
 import { useHistory } from 'react-router-dom';
+import AuthContainer from '../../components/AuthContainer';
 import AuthSwitch from '../../components/AuthSwitch';
 import Button from '../../components/Button';
 import FacebookButton from '../../components/FacebookButton';
@@ -55,59 +56,61 @@ const Login: React.FC = () => {
 
   return (
     <Container>
-      <FormContainer>
-        <Formik
-          initialValues={initialValues}
-          onSubmit={onSubmit}
-          validationSchema={loginValidationSchema}
-        >
-          {(props: FormikProps<IFormValues>) => {
-            const {
-              values,
-              touched,
-              errors,
-              dirty,
-              isValid,
-              handleBlur,
-              handleChange,
-              isSubmitting,
-            } = props;
-            return (
-              <Form style={{ width: '100%' }}>
-                <TextField
-                  name='userId'
-                  id='form-user-id'
-                  label='Mobile Number or Email'
-                  value={values.userId}
-                  error={errors.userId && touched.userId ? true : false}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                <TextField
-                  name='password'
-                  id='form-password'
-                  label='Password'
-                  value={values.password}
-                  error={errors.password && touched.password ? true : false}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                <Button
-                  type='submit'
-                  disabled={!(dirty && isValid) || isSubmitting}
-                >
-                  Log in
-                </Button>
-              </Form>
-            );
-          }}
-        </Formik>
-        <OrBox />
-        <FacebookButton />
-        {errorMessage && <Typography>{errorMessage}</Typography>}
-        <Typography>Forgot your password?</Typography>
-      </FormContainer>
-      <AuthSwitch dest='signup' />
+      <AuthContainer>
+        <FormContainer>
+          <Formik
+            initialValues={initialValues}
+            onSubmit={onSubmit}
+            validationSchema={loginValidationSchema}
+          >
+            {(props: FormikProps<IFormValues>) => {
+              const {
+                values,
+                touched,
+                errors,
+                dirty,
+                isValid,
+                handleBlur,
+                handleChange,
+                isSubmitting,
+              } = props;
+              return (
+                <Form style={{ width: '100%' }}>
+                  <TextField
+                    name='userId'
+                    id='form-user-id'
+                    label='Mobile Number or Email'
+                    value={values.userId}
+                    error={errors.userId && touched.userId ? true : false}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  <TextField
+                    name='password'
+                    id='form-password'
+                    label='Password'
+                    value={values.password}
+                    error={errors.password && touched.password ? true : false}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  <Button
+                    type='submit'
+                    disabled={!(dirty && isValid) || isSubmitting}
+                  >
+                    Log in
+                  </Button>
+                </Form>
+              );
+            }}
+          </Formik>
+          <OrBox />
+          <FacebookButton />
+          {errorMessage && <Typography>{errorMessage}</Typography>}
+          <Typography>Forgot your password?</Typography>
+        </FormContainer>
+        <AuthSwitch dest='signup' />
+      </AuthContainer>
     </Container>
   );
 };

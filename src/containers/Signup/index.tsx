@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Container, Grid, Typography } from '@material-ui/core';
 import { Formik, Form, FormikProps } from 'formik';
 import { useHistory } from 'react-router-dom';
+import AuthContainer from '../../components/AuthContainer';
 import AuthSwitch from '../../components/AuthSwitch';
 import Button from '../../components/Button';
 import FacebookButton from '../../components/FacebookButton';
@@ -77,111 +78,113 @@ const Signup: React.FC = () => {
 
   return (
     <Container>
-      <FormContainer>
-        <Grid>
-          <Typography align='center'>
-            Sign up to see photos and videos from your friends.
-          </Typography>
-        </Grid>
-        <FacebookButton />
-        <OrBox />
-        <Formik
-          initialValues={initialValues}
-          onSubmit={onSubmit}
-          validationSchema={signupValidationSchema}
-        >
-          {(props: FormikProps<IFormValues>) => {
-            const {
-              values,
-              touched,
-              errors,
-              dirty,
-              isValid,
-              handleBlur,
-              handleChange,
-              isSubmitting,
-            } = props;
-            return (
-              <Form>
-                <TextField
-                  name='userId'
-                  id='form-user-id'
-                  label='Mobile Number or Email'
-                  value={values.userId}
-                  error={
-                    focused !== 'userId' && errors.userId && touched.userId
-                      ? true
-                      : false
-                  }
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  onFocus={() => setFocused('userId')}
-                />
-                <TextField
-                  name='fullName'
-                  id='form-full-name'
-                  label='Full Name'
-                  value={values.fullName}
-                  error={
-                    focused !== 'fullName' &&
-                    errors.fullName &&
-                    touched.fullName
-                      ? true
-                      : false
-                  }
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  onFocus={() => setFocused('fullName')}
-                />
-                <TextField
-                  name='userName'
-                  id='form-user-name'
-                  label='Username'
-                  value={values.userName}
-                  error={
-                    focused !== 'userName' &&
-                    errors.userName &&
-                    touched.userName
-                      ? true
-                      : false
-                  }
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  onFocus={() => setFocused('userName')}
-                />
-                <TextField
-                  name='password'
-                  id='form-password'
-                  label='Password'
-                  value={values.password}
-                  error={
-                    focused !== 'password' &&
-                    errors.password &&
-                    touched.password
-                      ? true
-                      : false
-                  }
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  onFocus={() => setFocused('password')}
-                />
-                <Button
-                  type='submit'
-                  disabled={!(dirty && isValid) || isSubmitting}
-                >
-                  Sign up
-                </Button>
-                {errorMessage && <Typography>{errorMessage}</Typography>}
-                <Typography variant='subtitle2' align='center'>
-                  By signing up, you agree to our Terms, Data Policy and Cookies
-                  Policy.
-                </Typography>
-              </Form>
-            );
-          }}
-        </Formik>
-      </FormContainer>
-      <AuthSwitch dest='login' />
+      <AuthContainer>
+        <FormContainer>
+          <Grid>
+            <Typography align='center'>
+              Sign up to see photos and videos from your friends.
+            </Typography>
+          </Grid>
+          <FacebookButton />
+          <OrBox />
+          <Formik
+            initialValues={initialValues}
+            onSubmit={onSubmit}
+            validationSchema={signupValidationSchema}
+          >
+            {(props: FormikProps<IFormValues>) => {
+              const {
+                values,
+                touched,
+                errors,
+                dirty,
+                isValid,
+                handleBlur,
+                handleChange,
+                isSubmitting,
+              } = props;
+              return (
+                <Form>
+                  <TextField
+                    name='userId'
+                    id='form-user-id'
+                    label='Mobile Number or Email'
+                    value={values.userId}
+                    error={
+                      focused !== 'userId' && errors.userId && touched.userId
+                        ? true
+                        : false
+                    }
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    onFocus={() => setFocused('userId')}
+                  />
+                  <TextField
+                    name='fullName'
+                    id='form-full-name'
+                    label='Full Name'
+                    value={values.fullName}
+                    error={
+                      focused !== 'fullName' &&
+                      errors.fullName &&
+                      touched.fullName
+                        ? true
+                        : false
+                    }
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    onFocus={() => setFocused('fullName')}
+                  />
+                  <TextField
+                    name='userName'
+                    id='form-user-name'
+                    label='Username'
+                    value={values.userName}
+                    error={
+                      focused !== 'userName' &&
+                      errors.userName &&
+                      touched.userName
+                        ? true
+                        : false
+                    }
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    onFocus={() => setFocused('userName')}
+                  />
+                  <TextField
+                    name='password'
+                    id='form-password'
+                    label='Password'
+                    value={values.password}
+                    error={
+                      focused !== 'password' &&
+                      errors.password &&
+                      touched.password
+                        ? true
+                        : false
+                    }
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    onFocus={() => setFocused('password')}
+                  />
+                  <Button
+                    type='submit'
+                    disabled={!(dirty && isValid) || isSubmitting}
+                  >
+                    Sign up
+                  </Button>
+                  {errorMessage && <Typography>{errorMessage}</Typography>}
+                  <Typography variant='subtitle2' align='center'>
+                    By signing up, you agree to our Terms, Data Policy and
+                    Cookies Policy.
+                  </Typography>
+                </Form>
+              );
+            }}
+          </Formik>
+        </FormContainer>
+        <AuthSwitch dest='login' />
+      </AuthContainer>
     </Container>
   );
 };
