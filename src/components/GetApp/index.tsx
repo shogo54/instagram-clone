@@ -1,7 +1,6 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 import appleStore from '../../assets/apple-store-download.png';
 import googlePlay from '../../assets/google-play-download.png';
 import { useStyles } from './style';
