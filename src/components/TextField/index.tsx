@@ -32,7 +32,7 @@ const TextField: React.FC<TextFieldProps> = ({
         disableUnderline: true,
         endAdornment: adornment,
       }}
-      InputLabelProps={{ shrink: value ? true : false }}
+      InputLabelProps={{ shrink: value ? true : false, style: {color: 'rgb(142, 142, 142)'} }}
       size='small'
       {...props}
     />

@@ -11,15 +11,12 @@ export const inputStyles = makeStyles<Theme, IInputSytlesProps>(
         border: '1px solid #e2e2e1',
         overflow: 'hidden',
         borderRadius: 3,
-        backgroundColor: 'rgba(250,250,250)',
-        //transition: theme.transitions.create(['border-color', 'box-shadow']),
+        backgroundColor: theme.palette.grey[50],
         '&:hover': {
-          backgroundColor: 'rgba(250,250,250)',
+          backgroundColor: theme.palette.grey[50],
         },
         '&$focused': {
-          backgroundColor: 'rgba(250,250,250)',
-          //boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 2px`,
-          //borderColor: 'rgb(219, 219, 219)',
+          backgroundColor: theme.palette.grey[50],
         },
       },
       focused: {},
