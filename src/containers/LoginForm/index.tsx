@@ -90,6 +90,7 @@ const LoginForm: React.FC = () => {
                   name='password'
                   id='form-password'
                   label='Password'
+                  pass
                   value={values.password}
                   error={errors.password && touched.password ? true : false}
                   onChange={handleChange}

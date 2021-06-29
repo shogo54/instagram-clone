@@ -110,6 +110,7 @@ const SignupForm: React.FC = () => {
                   name='userId'
                   id='form-user-id'
                   label='Mobile Number or Email'
+                  signup
                   value={values.userId}
                   error={
                     focused !== 'userId' && errors.userId && touched.userId
@@ -124,6 +125,7 @@ const SignupForm: React.FC = () => {
                   name='fullName'
                   id='form-full-name'
                   label='Full Name'
+                  signup
                   value={values.fullName}
                   error={
                     focused !== 'fullName' &&
@@ -140,6 +142,7 @@ const SignupForm: React.FC = () => {
                   name='userName'
                   id='form-user-name'
                   label='Username'
+                  signup
                   value={values.userName}
                   error={
                     focused !== 'userName' &&
@@ -156,6 +159,8 @@ const SignupForm: React.FC = () => {
                   name='password'
                   id='form-password'
                   label='Password'
+                  signup
+                  pass
                   value={values.password}
                   error={
                     focused !== 'password' &&
