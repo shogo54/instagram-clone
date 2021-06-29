@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../Auth';
+import { AuthContext } from '../../containers/Auth';
 import AuthContainer from '../../components/AuthContainer';
 import Button from '../../components/Button';
 import PageContainer from '../../components/PageContainer';

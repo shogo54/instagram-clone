@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-import Home from '../src/containers/Home';
-import Login from '../src/containers/Login';
-import Signup from '../src/containers/Signup';
-import Profile from '../src/containers/Profile';
 import { AuthContext } from './containers/Auth';
+import Home from './domain/Home';
+import Login from './domain/Login';
+import Profile from './domain/Profile';
+import Signup from './domain/Signup';
 
 const Routes: React.FC = () => {
   const { user } = useContext(AuthContext);
