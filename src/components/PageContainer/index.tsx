@@ -9,10 +9,12 @@ const PageContainer: React.FC = ({ children }) => {
       direction='column'
       justify='center'
       alignItems='center'
-      style={{ width: '100%', minHeight: '100vh', backgroundColor: '#fafafa'}}
+      style={{ width: '100%', minHeight: '100vh', backgroundColor: '#fafafa' }}
     >
       <Grid item>{children}</Grid>
-      <Grid item><Footer/></Grid>
+      <Grid item>
+        <Footer />
+      </Grid>
     </Grid>
   );
 };

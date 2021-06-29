@@ -1,10 +1,17 @@
 import React from 'react';
+import { Grid } from '@material-ui/core';
 
 const AuthContainer: React.FC = ({ children }) => {
   return (
-    <div style={{width: 350, height: 786, marginTop: 32, marginBottom: 32}}>
-      {children}
-    </div>
+    <Grid
+      container
+      direction='column'
+      justify='center'
+      alignItems='center'
+      style={{ width: 350, height: 786 }}
+    >
+      <Grid item>{children}</Grid>
+    </Grid>
   );
 };
 
