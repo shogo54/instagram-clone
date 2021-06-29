@@ -11,6 +11,7 @@ const Button: React.FC<ButtonProps> = ({ children, ...props }) => {
       size='small'
       color='primary'
       fullWidth
+      disableRipple
       classes={classes}
       {...props}
     >
