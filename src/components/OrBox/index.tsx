@@ -15,7 +15,7 @@ const OrBox: React.FC = () => {
       className={classes.root}
     >
       <Grid item className={classes.divider}></Grid>
-      <Typography variant='subtitle2' className={classes.or}>
+      <Typography variant='subtitle1' color='textSecondary' className={classes.or}>
         OR
       </Typography>
       <Grid item className={classes.divider}></Grid>

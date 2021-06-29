@@ -8,6 +8,7 @@ import Button from '../../components/Button';
 import FacebookButton from '../../components/FacebookButton';
 import FormContainer from '../../components/FormContainer';
 import GetApp from '../../components/GetApp';
+import Link from '../../components/Link';
 import OrBox from '../../components/OrBox';
 import PageContainer from '../../components/PageContainer';
 import TextField from '../../components/TextField';
@@ -107,9 +108,13 @@ const Login: React.FC = () => {
             }}
           </Formik>
           <OrBox />
-          <FacebookButton />
+          <FacebookButton currPage='login' />
           {errorMessage && <Typography>{errorMessage}</Typography>}
-          <Typography>Forgot your password?</Typography>
+          <Link to='/' style={{ marginTop: 12 }}>
+            <Typography variant='subtitle2' color='secondary'>
+              Forgot your password?
+            </Typography>
+          </Link>
         </FormContainer>
         <AuthSwitch dest='signup' />
         <GetApp />

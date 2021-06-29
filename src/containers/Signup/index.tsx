@@ -8,6 +8,7 @@ import Button from '../../components/Button';
 import FacebookButton from '../../components/FacebookButton';
 import FormContainer from '../../components/FormContainer';
 import GetApp from '../../components/GetApp';
+import Link from '../../components/Link';
 import OrBox from '../../components/OrBox';
 import PageContainer from '../../components/PageContainer';
 import TextField from '../../components/TextField';
@@ -82,12 +83,12 @@ const Signup: React.FC = () => {
     <PageContainer>
       <AuthContainer>
         <FormContainer>
-          <Grid>
-            <Typography align='center'>
+          <Grid style={{marginBottom: 10}}>
+            <Typography variant='body1' color='textSecondary' align='center'>
               Sign up to see photos and videos from your friends.
             </Typography>
           </Grid>
-          <FacebookButton />
+          <FacebookButton currPage={'signup'}/>
           <OrBox />
           <Formik
             initialValues={initialValues}
@@ -176,9 +177,24 @@ const Signup: React.FC = () => {
                     Sign up
                   </Button>
                   {errorMessage && <Typography>{errorMessage}</Typography>}
-                  <Typography variant='subtitle2' align='center'>
-                    By signing up, you agree to our Terms, Data Policy and
-                    Cookies Policy.
+                  <Typography
+                    variant='subtitle2'
+                    color='textSecondary'
+                    align='center'
+                  >
+                    By signing up, you agree to our{' '}
+                    <Link to='/' style={{ fontWeight: 600 }}>
+                      Terms
+                    </Link>{' '}
+                    ,{' '}
+                    <Link to='/' style={{ fontWeight: 600 }}>
+                      Data Policy
+                    </Link>{' '}
+                    and
+                    <Link to='/' style={{ fontWeight: 600 }}>
+                      Cookies Policy
+                    </Link>{' '}
+                    .
                   </Typography>
                 </Form>
               );

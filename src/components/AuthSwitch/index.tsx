@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Typography } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import Link from '../Link';
 import { useStyles } from './style';
 
 interface AuthSwitchProps {
@@ -27,8 +27,8 @@ const AuthSwitch: React.FC<AuthSwitchProps> = ({ dest = 'signup' }) => {
       classes={classes}
     >
       <Grid item>
-        <Typography align='center' style={{ width: '100%' }}>
-          {text} <Link to={`/accounts/${dest}`}>{buttonText}</Link>
+        <Typography variant='body2' align='center' style={{ width: '100%' }}>
+          {text} <Link to={`/accounts/${dest}`} color='primary'>{buttonText}</Link>
         </Typography>
       </Grid>
     </Grid>

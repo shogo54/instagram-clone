@@ -10,7 +10,7 @@ const GetApp: React.FC = () => {
 
   return (
     <Grid container direction='column' justify='center' alignItems='center'>
-      <Typography className={classes.text}>Get the app.</Typography>
+      <Typography variant='body2' className={classes.text}>Get the app.</Typography>
       <Grid
         container
         direction='row'

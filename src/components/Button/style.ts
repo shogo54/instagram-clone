@@ -6,6 +6,6 @@ export const useStyles = makeStyles({
   },
   label: {
     textTransform: 'none',
-    fontWeight: 700,
+    fontWeight: 600,
   },
 });
